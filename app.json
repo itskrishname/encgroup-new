@@ -1,0 +1,57 @@
+{
+  "name": "encgroup-new",
+  "description": "Telegram group video encoder bot using FFmpeg.",
+  "repository": "https://github.com/itskrishname/encgroup-new",
+  "env": {
+    "API_ID": {
+      "description": "Telegram API ID from my.telegram.org/apps",
+      "required": true
+    },
+    "API_HASH": {
+      "description": "Telegram API hash from my.telegram.org/apps",
+      "required": true
+    },
+    "BOT_TOKEN": {
+      "description": "Bot token from @BotFather",
+      "required": true
+    },
+    "OWNER_ID": {
+      "description": "Telegram user ID of the owner (space‑separated list if multiple).",
+      "required": true
+    },
+    "DATABASE_URL": {
+      "description": "MongoDB connection string (if the bot uses MongoDB).",
+      "required": false
+    },
+    "LOG_CHANNEL": {
+      "description": "Log channel/group ID where errors and logs are sent.",
+      "required": false
+    },
+    "FCHANNEL": {
+      "description": "Channel ID where encoded videos will be forwarded (if used).",
+      "required": false
+    },
+    "FFMPEG_CMD": {
+      "description": "Default ffmpeg command or preset string for encoding (optional).",
+      "required": false
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    },
+    {
+      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+    }
+  ],
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [],
+  "scripts": {
+    "postdeploy": "echo "encgroup-new deployed""
+  }
+}
